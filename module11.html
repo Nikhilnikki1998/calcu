@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous" />
+
+</head>
+
+<body>
+    <div id="bmi">
+
+    </div>
+    <script type="text/babel">
+        class Bmi extends React.Component {
+            result() {
+                var wei = document.getElementById("first").value;
+                var hei = document.getElementById("second").value;
+                var weig = Number(wei);
+                var heig = Number(hei);
+                if (heig != 0) {
+                    var resu = (weig / (heig * heig)).toFixed(2);
+                    var gate = "";
+                    if (resu < 18.5) {
+                        gate = "UNDER WEIGHT";
+                    }
+                    else if (resu > 18.5 && resu < 24.9) {
+                        gate = "NORMAL WEIGHT";
+                    }
+                    else if (resu > 24.9 && resu < 29.9) {
+                        gate = "OVER WEIGHT";
+                    }
+                    else {
+                        gate = "OBESE";
+                    }
+                    document.getElementById("resul").innerHTML = '<br><center><b>BMI for the entered values is: </b>' + resu + '</center>';
+                    document.getElementById("resul").innerHTML += '<br><center><b>You fall under category: </b>' + gate + '</center>';
+                }
+                else {
+                    document.getElementById("resul").innerHTML = '<br><center><b>CANNOT CALCULATE THE BMI</b></center>';
+                    document.getElementById("resul").innerHTML += '<br><center><b>GIVE PROPER WEIGHT AND HEIGHT</b></center>';
+                }
+            }
+            addition() {
+                var one1 = document.getElementById("third").value;
+                var two1 = document.getElementById("fourth").value;
+                var one = Number(one1);
+                var two = Number(two1);
+                var resu1 = one + two;
+                document.getElementById("reslt").innerHTML = '<br><center><b>Result: </b>' + resu1 + '</center>';
+            }
+            substraction() {
+                var one1 = document.getElementById("third").value;
+                var two1 = document.getElementById("fourth").value;
+                var one = Number(one1);
+                var two = Number(two1);
+                var resu1 = one - two;
+                document.getElementById("reslt").innerHTML = '<br><center><b>Result: </b>' + resu1 + '</center>';
+            }
+            multiplication() {
+                var one1 = document.getElementById("third").value;
+                var two1 = document.getElementById("fourth").value;
+                var one = Number(one1);
+                var two = Number(two1);
+                var resu1 = one * two;
+                document.getElementById("reslt").innerHTML = '<br><center><b>Result: </b>' + resu1 + '</center>';
+            }
+            division() {
+                var one1 = document.getElementById("third").value;
+                var two1 = document.getElementById("fourth").value;
+                var one = Number(one1);
+                var two = Number(two1);
+                if (two != 0) {
+                    var resu1 = one / two;
+                    document.getElementById("reslt").innerHTML = '<br><center><b>Result: </b>' + resu1 + '</center>';
+                }
+                else {
+                    document.getElementById("reslt").innerHTML = '<br><center><b>DIVISION IS NOT POSSIBLE</b></center>';
+                }
+            }
+            render() {
+                return (
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 ml-3 mr-3">
+                                <div><center><h1>BMI CALCULATOR</h1></center></div>
+                                <div class="mt-5">
+                                    <h4><label for="first" class="form-label">WEIGHT (KiloGram)</label></h4>
+                                    <input type="number" id="first" class="form-control" placeholder="Weight in KiloGram's" />
+                                </div>
+                                <div class="mt-5">
+                                    <h4><label for="second" class="form-label">HEIGHT (M)</label></h4>
+                                    <input type="number" id="second" class="form-control" placeholder="Height in Meter's" />
+                                </div>
+
+                                <div class="mt-5">
+                                    <button type="submit" class="btn btn-primary" onClick={this.result}>Submit</button>
+                                </div>
+                                <div id="resul"></div>
+                            </div>
+                            <div class="col-md-6 ml-3 mr-3">
+                                <div><center><h1>CALCULATOR</h1></center></div>
+                                <div class="mt-5">
+                                    <h4><label for="third" class="form-label">Please enter a Number</label></h4>
+                                    <input type="number" id="third" class="form-control" placeholder="Number" />
+                                </div>
+                                <div class="mt-5">
+                                    <h4><label for="fourth" class="form-label">Please enter a Number</label></h4>
+                                    <input type="number" id="fourth" class="form-control" placeholder="Number" />
+                                </div>
+
+                                <div class="mt-5">
+                                    <center><button type="submit" class="btn btn-primary" onClick={this.addition}>+</button>
+                                    &emsp;<button type="submit" class="btn btn-primary" onClick={this.substraction}>-</button>
+                                    &emsp;<button type="submit" class="btn btn-primary" onClick={this.multiplication}>*</button>
+                                    &emsp;<button type="submit" class="btn btn-primary" onClick={this.division}>/</button></center>
+                                </div>
+                                <div id="reslt"></div>
+                            </div>
+                        </div>
+                    </div>);
+            }
+        }
+        ReactDOM.render(<Bmi />, document.getElementById("bmi"));
+    </script>
+    <style>
+        body {
+            background-image: url("bg.jpg");
+            color: aliceblue;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
